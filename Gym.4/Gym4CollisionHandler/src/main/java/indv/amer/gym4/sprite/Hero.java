@@ -1,4 +1,4 @@
-package sprite;
+package indv.amer.gym4.sprite;
 
 import lombok.NoArgsConstructor;
 

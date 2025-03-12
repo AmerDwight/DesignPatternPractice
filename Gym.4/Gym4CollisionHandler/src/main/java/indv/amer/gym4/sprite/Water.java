@@ -1,4 +1,4 @@
-package sprite;
+package indv.amer.gym4.sprite;
 
 public class Water implements Sprite{
     @Override
