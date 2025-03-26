@@ -3,8 +3,6 @@ package indv.amer.poker;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.naming.NoInitialContextException;
-
 @Getter
 public enum PokerRank {
     ACE("A"),

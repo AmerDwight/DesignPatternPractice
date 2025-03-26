@@ -10,9 +10,9 @@ import java.util.Stack;
 
 @AllArgsConstructor
 public class Deck {
-    Stack<Card> cardStack;
+    Stack<PokerCard> cardStack;
 
-    public Card deal() {
+    public PokerCard deal() {
         if (CollectionUtils.isNotEmpty(cardStack)) {
             return cardStack.pop();
         }
@@ -31,9 +31,9 @@ public class Deck {
         if (StringUtils.isBlank(importStr)) {
             throw new IllegalArgumentException("Empty deck String");
         }
-        Stack<Card> cardStack = new Stack<>();
+        Stack<PokerCard> cardStack = new Stack<>();
         Arrays.stream(importStr.split(" ")).forEach(
-                cardStr -> cardStack.push(Card.readCard(cardStr))
+                cardStr -> cardStack.push(PokerCard.readCard(cardStr))
         );
         return new Deck(cardStack);
     }
