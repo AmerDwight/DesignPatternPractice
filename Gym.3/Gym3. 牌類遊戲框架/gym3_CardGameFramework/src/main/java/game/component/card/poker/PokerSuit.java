@@ -14,5 +14,4 @@ public enum PokerSuit {
     PokerSuit(String name) {
         this.suitName = name;
     }
-
 }
