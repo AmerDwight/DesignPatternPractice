@@ -20,14 +20,20 @@ public class Big2CardBasicComparator implements Comparator<PokerCard> {
             PokerSuit.CLUB, PokerSuit.DIAMOND, PokerSuit.HEART, PokerSuit.SPADE
     };
 
+    /**
+     *
+     * @param x the first object to be compared.
+     * @param y the second object to be compared.
+     * @return the value 0 if x == y; a value less than 0 if x < y; and a value greater than 0 if x > y
+     */
     @Override
-    public int compare(PokerCard card1, PokerCard card2) {
+    public int compare(PokerCard x, PokerCard y) {
         // 首先比較牌面大小
-        int rankCompare = compareRank(card1.rank(), card2.rank());
+        int rankCompare = compareRank(x.rank(), y.rank());
 
         // 如果牌面大小相同，則比較花色
         if (rankCompare == 0) {
-            return compareSuit(card1.suit(), card2.suit());
+            return compareSuit(x.suit(), y.suit());
         }
 
         return rankCompare;
@@ -67,5 +73,9 @@ public class Big2CardBasicComparator implements Comparator<PokerCard> {
 
     public static Comparator<PokerCard> big2Comparator() {
         return new Big2CardBasicComparator();
+    }
+
+    public static boolean isNextCardBigger(PokerCard card1, PokerCard card2) {
+        return big2Comparator().compare(card1, card2) < 0;
     }
 }

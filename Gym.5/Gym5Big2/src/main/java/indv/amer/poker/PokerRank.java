@@ -61,7 +61,7 @@ public enum PokerRank {
         }else if(StringUtils.equalsIgnoreCase(rankStr,KING.getRank())){
             return KING;
         }else{
-            throw new IllegalArgumentException("Unknown Suit Symbol Cannot recognize.");
+            throw new IllegalArgumentException("Unknown Rank Symbol Cannot recognize.");
         }
     }
 }
