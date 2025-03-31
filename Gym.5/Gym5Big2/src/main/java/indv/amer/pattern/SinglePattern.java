@@ -1,6 +1,6 @@
 package indv.amer.pattern;
 
-import indv.amer.Big2CardBasicComparator;
+import indv.amer.comparator.Big2BasicComparator;
 import indv.amer.Validated;
 import indv.amer.poker.PokerCard;
 import org.apache.commons.collections4.CollectionUtils;
@@ -20,6 +20,6 @@ public class SinglePattern extends CardPatternTemplate {
 
     @Override
     protected boolean patternCompare(@Validated List<PokerCard> topPlay, @Validated List<PokerCard> nextPlay) {
-        return Big2CardBasicComparator.isNextCardBigger(topPlay.get(0), nextPlay.get(0));
+        return Big2BasicComparator.isNextCardBigger(topPlay.get(0), nextPlay.get(0));
     }
 }

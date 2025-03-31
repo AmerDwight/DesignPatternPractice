@@ -1,6 +1,6 @@
 package indv.amer.pattern;
 
-import indv.amer.Big2CardBasicComparator;
+import indv.amer.comparator.Big2BasicComparator;
 import indv.amer.Validated;
 import indv.amer.poker.PokerCard;
 import indv.amer.poker.PokerRank;
@@ -51,7 +51,7 @@ public class FullHousePattern extends CardPatternTemplate {
         PokerCard onCompareOfTopPlay = getFullHouseOnCompareCard(topPlay);
         PokerCard onCompareOfNextPlay = getFullHouseOnCompareCard(nextPlay);
 
-        return Big2CardBasicComparator.isNextCardBigger(onCompareOfTopPlay,onCompareOfNextPlay);
+        return Big2BasicComparator.isNextCardBigger(onCompareOfTopPlay,onCompareOfNextPlay);
     }
 
     private PokerCard getFullHouseOnCompareCard(@Validated List<PokerCard> fullHouse) {
@@ -69,7 +69,7 @@ public class FullHousePattern extends CardPatternTemplate {
                 PokerRank targetRank = entry.getKey();
                 onCompareCard = fullHouse.stream()
                         .filter(card -> card.rank() == targetRank)
-                        .max(Big2CardBasicComparator.big2Comparator())
+                        .max(Big2BasicComparator.big2Comparator())
                         .orElse(null);
             }
         }

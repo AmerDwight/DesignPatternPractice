@@ -1,4 +1,4 @@
-package indv.amer;
+package indv.amer.comparator;
 
 import indv.amer.poker.PokerCard;
 import indv.amer.poker.PokerRank;
@@ -6,7 +6,7 @@ import indv.amer.poker.PokerSuit;
 
 import java.util.Comparator;
 
-public class Big2CardBasicComparator implements Comparator<PokerCard> {
+public class Big2BasicComparator implements Comparator<PokerCard> {
     // 定義大老二的牌面順序（從小到大）
     private static final PokerRank[] RANK_ORDER = {
             PokerRank.THREE, PokerRank.FOUR, PokerRank.FIVE, PokerRank.SIX,
@@ -72,7 +72,7 @@ public class Big2CardBasicComparator implements Comparator<PokerCard> {
     }
 
     public static Comparator<PokerCard> big2Comparator() {
-        return new Big2CardBasicComparator();
+        return new Big2BasicComparator();
     }
 
     public static boolean isNextCardBigger(PokerCard card1, PokerCard card2) {
