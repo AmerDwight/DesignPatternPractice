@@ -1,29 +1,40 @@
 package indv.amer.player;
 
+import indv.amer.Validated;
 import indv.amer.poker.PokerCard;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 @Slf4j
+@Getter
 public class Player {
-    @Getter
-    @Setter
+    // 正則表達式模式定義：允許A-Z、a-z、0-9和中文字
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[A-Za-z0-9\u4e00-\u9fa5]+$");
+
     String name;
     List<PokerCard> handCards = new ArrayList<>();
 
-    public void withdraw(@NonNull PokerCard card) {
+    public Player(final String _name) {
+        if (isValidName(_name)) {
+            this.name = _name;
+        } else {
+            throw new IllegalArgumentException("Wrong Input For Name");
+        }
+    }
+
+    public void receiveCard(@NonNull PokerCard card) {
         this.handCards.add(card);
     }
 
-    public List<PokerCard> preparePlay(String command) {
-        // TODO
+    public void play(@Validated List<PokerCard> onPlayCards) {
+        handCards = new ArrayList<>(CollectionUtils.subtract(handCards, onPlayCards));
     }
 
     public void printHandCards() {
@@ -57,4 +68,10 @@ public class Player {
         }
     }
 
+    public static boolean isValidName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return false;
+        }
+        return NAME_PATTERN.matcher(name).matches();
+    }
 }

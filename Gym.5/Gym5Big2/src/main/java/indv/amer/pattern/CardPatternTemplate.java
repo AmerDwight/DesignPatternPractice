@@ -22,6 +22,17 @@ public abstract class CardPatternTemplate {
         }
     }
 
+    public boolean verifySamePattern(@Validated List<PokerCard> topPlay, @Validated List<PokerCard> nextPlay){
+        if (this.patternVerify(topPlay)) {
+            // 兩種牌型都一樣才回傳 true
+            return this.patternVerify(nextPlay);
+        } else if (nextTemplate != null) {
+            return nextTemplate.compare(topPlay, nextPlay);
+        } else {
+            return false;
+        }
+    }
+
     public boolean compare(@Validated List<PokerCard> topPlay, @Validated List<PokerCard> nextPlay) {
         if (this.patternVerify(topPlay)) {
             // 兩種牌型都一樣才做比較
