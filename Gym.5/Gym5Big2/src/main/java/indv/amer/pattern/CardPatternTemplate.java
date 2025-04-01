@@ -8,6 +8,7 @@ import java.util.List;
 
 @AllArgsConstructor
 public abstract class CardPatternTemplate {
+    String signature;
     CardPatternTemplate nextTemplate;
 
     public boolean verify(List<PokerCard> cards) {
