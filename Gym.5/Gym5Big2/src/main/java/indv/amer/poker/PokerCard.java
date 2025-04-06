@@ -13,12 +13,14 @@ public record PokerCard(PokerSuit suit, PokerRank rank) {
     }
 
     public static PokerCard readCard(String cardStr) {
-        if (StringUtils.isBlank(cardStr) || cardStr.length() != 4) {
+        String prefixBracket = "[";
+        String postfixBracket = "]";
+        if (StringUtils.isBlank(cardStr) || cardStr.length() != cardStr.indexOf(postfixBracket)+1) {
             throw new IllegalArgumentException("Card String: " + cardStr + " is illegal.");
         } else {
             return new PokerCard(
                     PokerSuit.readSuitSymbol(cardStr.substring(0, 1)),
-                    PokerRank.readRank(cardStr.substring(3, 4))
+                    PokerRank.readRank(cardStr.substring(cardStr.indexOf(prefixBracket)+1, cardStr.indexOf(postfixBracket)))
             );
         }
     }
@@ -28,7 +30,7 @@ public record PokerCard(PokerSuit suit, PokerRank rank) {
         if (CollectionUtils.isNotEmpty(cards)) {
             IntStream.range(0, cards.size()).forEach(
                     i -> {
-                        if (i > 1) {
+                        if (i > 0) {
                             sb.append(" ");
                         }
                         sb.append(cards.get(i).toString());

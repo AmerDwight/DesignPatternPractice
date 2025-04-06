@@ -1,39 +1,53 @@
 package indv.amer.command;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
+@Slf4j
 public class TextCommander implements CommandReader {
     private final List<String> commands;
     private int currentCommandIndex;
     private String selectedFilePath;
+    private final CountDownLatch initLatch;
 
     public TextCommander() {
         commands = new ArrayList<>();
         currentCommandIndex = 0;
+        initLatch = new CountDownLatch(1);
 
         // 選擇文件
         SwingUtilities.invokeLater(() -> {
             try {
                 selectTextFile();
                 loadCommands();
+                initLatch.countDown();
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null,
                         "讀取文件時發生錯誤: " + e.getMessage(),
                         "錯誤", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
             }
         });
+    }
+
+    public void waitForInitialization() throws InterruptedException {
+        initLatch.await();
     }
 
     @Override
     public String getNextCommand() {
         // 如果沒有更多指令，返回空字符串
         if (commands.isEmpty() || currentCommandIndex >= commands.size()) {
-            throw new IllegalArgumentException("No more command...");
+            throw new IllegalArgumentException("No more command... Current Index: " + currentCommandIndex + " Total Command Size: " + commands.size());
         }
-        return commands.get(currentCommandIndex++);
+        String nextCommand = commands.get(currentCommandIndex++);
+        log.debug("New Command = {}", nextCommand);
+        return nextCommand;
     }
 
     private void selectTextFile() {

@@ -2,7 +2,9 @@ package indv.amer.pattern;
 
 import indv.amer.poker.PokerCard;
 import indv.amer.poker.PokerRank;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +12,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Slf4j
 public class StraightPattern extends CardPatternTemplate {
     public StraightPattern(CardPatternTemplate nextTemplate) {
-        super(nextTemplate);
+        super(PatternLibrary.Straight.getChinese(), nextTemplate);
     }
 
     @Override
@@ -32,7 +35,8 @@ public class StraightPattern extends CardPatternTemplate {
                 cards.stream()
                         .map(PokerCard::rank)
                         .distinct()
-                        .collect(Collectors.toList());
+                        .collect(Collectors.toCollection(ArrayList::new));
+        ;
 
         // 檢查是否Rank都不一樣
         if (rankValues.size() != 5) {
@@ -67,16 +71,17 @@ public class StraightPattern extends CardPatternTemplate {
     }
 
     private boolean checkSequential(List<Integer> orderedRanksInNumber) {
-        AtomicBoolean isSequential = new AtomicBoolean(true);
-        IntStream.range(0, orderedRanksInNumber.size()).forEach(
-                i -> {
-                    isSequential.set(
-                            orderedRanksInNumber.get(i + 1) - orderedRanksInNumber.get(1) == 1
-                    );
-                }
-        );
-        return isSequential.get();
+        log.debug("CheckSequential： {}", orderedRanksInNumber);
+        for (int i = 0; i < orderedRanksInNumber.size() - 1; i++) {
+            if (orderedRanksInNumber.get(i + 1) - orderedRanksInNumber.get(i) != 1) {
+                log.debug("Not sequential at index {}: {} and {}", i,
+                        orderedRanksInNumber.get(i), orderedRanksInNumber.get(i + 1));
+                return false;
+            }
+        }
+        return true;
     }
+
 
     private int getNormalRankValue(PokerRank rank) {
         return switch (rank) {

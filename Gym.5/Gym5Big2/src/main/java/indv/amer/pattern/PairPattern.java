@@ -8,7 +8,7 @@ import java.util.List;
 
 public class PairPattern extends CardPatternTemplate {
     public PairPattern(CardPatternTemplate nextTemplate) {
-        super(nextTemplate);
+        super(PatternLibrary.Pair.getChinese(), nextTemplate);
     }
 
     @Override

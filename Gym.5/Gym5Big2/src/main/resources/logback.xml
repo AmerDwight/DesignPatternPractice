@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!-- 控制台輸出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 檔案輸出 -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <!-- 日誌檔案路徑，使用當前目錄 -->
+        <file>application.log</file>
         <encoder>
             <pattern>%msg%n</pattern>
         </encoder>
@@ -8,5 +19,6 @@
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
     </root>
 </configuration>

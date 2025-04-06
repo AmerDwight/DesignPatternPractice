@@ -3,38 +3,31 @@ package indv.amer.pattern;
 import indv.amer.Validated;
 import indv.amer.poker.PokerCard;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+@Slf4j
 @AllArgsConstructor
 public abstract class CardPatternTemplate {
+    @Getter
     String signature;
     CardPatternTemplate nextTemplate;
 
-    public boolean verify(List<PokerCard> cards) {
+    public CardPatternTemplate checkPattern(List<PokerCard> cards){
         if (this.patternVerify(cards)) {
-            return true;
+            return this;
         } else {
             if (nextTemplate != null) {
-                return nextTemplate.verify(cards);
+                return nextTemplate.checkPattern(cards);
             } else {
-                return false;
+                return null;
             }
         }
     }
 
-    public boolean verifySamePattern(@Validated List<PokerCard> topPlay, @Validated List<PokerCard> nextPlay){
-        if (this.patternVerify(topPlay)) {
-            // 兩種牌型都一樣才回傳 true
-            return this.patternVerify(nextPlay);
-        } else if (nextTemplate != null) {
-            return nextTemplate.compare(topPlay, nextPlay);
-        } else {
-            return false;
-        }
-    }
-
-    public boolean compare(@Validated List<PokerCard> topPlay, @Validated List<PokerCard> nextPlay) {
+    public boolean isNextPlayBigger(@Validated List<PokerCard> topPlay, @Validated List<PokerCard> nextPlay) {
         if (this.patternVerify(topPlay)) {
             // 兩種牌型都一樣才做比較
             if (this.patternVerify(nextPlay)) {
@@ -42,11 +35,8 @@ public abstract class CardPatternTemplate {
             } else {
                 return false;
             }
-        } else if (nextTemplate != null) {
-            return nextTemplate.compare(topPlay, nextPlay);
-        } else {
-            return false;
         }
+        return false;
     }
 
     protected abstract boolean patternVerify(List<PokerCard> cards);

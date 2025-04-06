@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SinglePattern extends CardPatternTemplate {
     public SinglePattern(CardPatternTemplate nextTemplate) {
-        super(nextTemplate);
+        super(PatternLibrary.Single.getChinese(), nextTemplate);
     }
 
     @Override

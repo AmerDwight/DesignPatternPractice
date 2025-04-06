@@ -30,38 +30,38 @@ public enum PokerRank {
         return rank;
     }
 
-    public static PokerRank readRank(String rankStr){
-        if(StringUtils.isBlank(rankStr)){
+    public static PokerRank readRank(String rankStr) {
+        if (StringUtils.isBlank(rankStr)) {
             throw new IllegalArgumentException("Empty RankString.");
         }
-        if(StringUtils.equalsIgnoreCase(rankStr,ACE.getRank())){
+        if (StringUtils.equalsIgnoreCase(rankStr, ACE.getRank())) {
             return ACE;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,TWO.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, TWO.getRank())) {
             return TWO;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,THREE.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, THREE.getRank())) {
             return THREE;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,FOUR.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, FOUR.getRank())) {
             return FOUR;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,FIVE.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, FIVE.getRank())) {
             return FIVE;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,SIX.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, SIX.getRank())) {
             return SIX;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,SEVEN.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, SEVEN.getRank())) {
             return SEVEN;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,EIGHT.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, EIGHT.getRank())) {
             return EIGHT;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,NINE.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, NINE.getRank())) {
             return NINE;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,TEN.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, TEN.getRank())) {
             return TEN;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,JACK.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, JACK.getRank())) {
             return JACK;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,QUEEN.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, QUEEN.getRank())) {
             return QUEEN;
-        }else if(StringUtils.equalsIgnoreCase(rankStr,KING.getRank())){
+        } else if (StringUtils.equalsIgnoreCase(rankStr, KING.getRank())) {
             return KING;
-        }else{
-            throw new IllegalArgumentException("Unknown Rank Symbol Cannot recognize.");
+        } else {
+            throw new IllegalArgumentException("Unknown Rank Symbol Cannot recognize: " + rankStr);
         }
     }
 }

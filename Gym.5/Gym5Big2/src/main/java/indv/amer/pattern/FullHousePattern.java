@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FullHousePattern extends CardPatternTemplate {
     public FullHousePattern(CardPatternTemplate nextTemplate) {
-        super(nextTemplate);
+        super(PatternLibrary.FullHouse.getChinese(), nextTemplate);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class FullHousePattern extends CardPatternTemplate {
         PokerCard onCompareOfTopPlay = getFullHouseOnCompareCard(topPlay);
         PokerCard onCompareOfNextPlay = getFullHouseOnCompareCard(nextPlay);
 
-        return Big2BasicComparator.isNextCardBigger(onCompareOfTopPlay,onCompareOfNextPlay);
+        return Big2BasicComparator.isNextCardBigger(onCompareOfTopPlay, onCompareOfNextPlay);
     }
 
     private PokerCard getFullHouseOnCompareCard(@Validated List<PokerCard> fullHouse) {

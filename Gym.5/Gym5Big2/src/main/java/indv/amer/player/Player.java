@@ -1,6 +1,7 @@
 package indv.amer.player;
 
 import indv.amer.Validated;
+import indv.amer.comparator.Big2BasicComparator;
 import indv.amer.poker.PokerCard;
 import lombok.Getter;
 import lombok.NonNull;
@@ -10,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Slf4j
@@ -31,10 +33,12 @@ public class Player {
 
     public void receiveCard(@NonNull PokerCard card) {
         this.handCards.add(card);
+        this.sortingHands();
     }
 
     public void play(@Validated List<PokerCard> onPlayCards) {
         handCards = new ArrayList<>(CollectionUtils.subtract(handCards, onPlayCards));
+        this.sortingHands();
     }
 
     public void printHandCards() {
@@ -56,11 +60,13 @@ public class Player {
                         handCardsStringBuilder.append(cardString);
 
                         // Index列 後方補空白
-                        IntStream.range(0, handCardsStringBuilder.length() - handCardsIndexStringBuilder.length()).forEach(
-                                spaceNumber -> {
-                                    handCardsIndexStringBuilder.append(" ");
-                                }
-                        );
+                        if(i !=this.handCards.size()-1){
+                            IntStream.range(0, handCardsStringBuilder.length() - handCardsIndexStringBuilder.length()).forEach(
+                                    spaceNumber -> {
+                                        handCardsIndexStringBuilder.append(" ");
+                                    }
+                            );
+                        }
                     }
             );
             log.info(handCardsIndexStringBuilder.toString());
@@ -73,5 +79,10 @@ public class Player {
             return false;
         }
         return NAME_PATTERN.matcher(name).matches();
+    }
+    private void sortingHands(){
+        if(CollectionUtils.isNotEmpty(this.getHandCards())){
+            this.handCards = this.getHandCards().stream().sorted(Big2BasicComparator.big2Comparator()).collect(Collectors.toCollection(ArrayList::new));
+        }
     }
 }
