@@ -18,6 +18,7 @@ import java.util.Stack;
 
 @Slf4j
 public class Big2 {
+    final PokerCard firstCard = new PokerCard(PokerSuit.CLUB,PokerRank.THREE);
     CommandReader commandReader;
     CardPatternTemplate cardPattern;
 
@@ -73,7 +74,7 @@ public class Big2 {
                         } else {
                             thisTurnPlay = getPlayerPlayFromCommand(nowPlayer.getHandCards(), nextCommander);
                             CardPatternTemplate thisRoundPattern = this.cardPattern.checkPattern(thisTurnPlay);
-                            if (thisRoundPattern != null) {
+                            if (thisRoundPattern != null && checkFirstPlay(thisTurnPlay)) {
                                 isValidPlay = true;
                                 round.setNowPattern(thisRoundPattern);
                                 round.setTopPlay(thisTurnPlay);
@@ -210,16 +211,22 @@ public class Big2 {
 
 
     private int findFirstPlayerIndex(List<Player> players) {
-        PokerCard firstPoker = new PokerCard(PokerSuit.CLUB, PokerRank.THREE);
         if (CollectionUtils.isNotEmpty(players)) {
             for (Player player : players) {
                 for (PokerCard poker : player.getHandCards()) {
-                    if (poker.equals(firstPoker)) {
+                    if (poker.equals(firstCard)) {
                         return players.indexOf(player);
                     }
                 }
             }
         }
         return 0;
+    }
+
+    private boolean checkFirstPlay(List<PokerCard> firstPlay) {
+        if(CollectionUtils.isNotEmpty(firstPlay)){
+            return firstPlay.contains(firstCard);
+        }
+        return false;
     }
 }
