@@ -3,8 +3,8 @@ package indv.amer.command;
 import indv.amer.device.Tank;
 
 public class TankMoveForwardCommand extends KeyboardCommand<Tank>{
-    public TankMoveForwardCommand(KeyboardCommand<?> nextCommand, Tank device) {
-        super(nextCommand, device);
+    public TankMoveForwardCommand(Tank device, KeyboardCommand<?> nextCommand) {
+        super(device, nextCommand);
     }
 
     public TankMoveForwardCommand(Tank _device) {

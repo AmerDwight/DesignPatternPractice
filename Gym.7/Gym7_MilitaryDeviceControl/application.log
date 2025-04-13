@@ -1,12 +1,26 @@
-水球 訂閱了 水球軟體學院。
-水球 訂閱了 PewDiePie。
-火球 訂閱了 水球軟體學院。
-火球 訂閱了 PewDiePie。
-頻道 水球軟體學院 上架了一則新影片 "C1M1S2"。
-水球 對影片 "C1M1S2" 按讚。
-頻道 PewDiePie 上架了一則新影片 "Hello guys"。
-火球 解除訂閱了 PewDiePie。
-頻道 水球軟體學院 上架了一則新影片 "C1M1S3"。
-火球 解除訂閱了 水球軟體學院。
-頻道 PewDiePie 上架了一則新影片 "Minecraft"。
-水球 對影片 "Minecraft" 按讚。
+Binding control on : Token z for Command ResetKeyboardCommand
+Binding control on : Token a for Command TankMoveForwardCommand
+Binding control on : Token b for Command TankMoveBackwardCommand
+Binding control on : Token c for Command TelecomConnectCommand
+Binding control on : Token d for Command TelecomDisconnectCommand
+基本命令已綁定: z=重置, a=坦克前進, b=坦克後退, c=通訊連接, d=通訊斷開
+It's CLI for solider.
+Usages:
+  exec <token> - 執行綁定的命令
+  bind <token> <command> - 綁定命令到按鍵
+  macro <token> <commands> - 創建並綁定 Macro 指令
+  undo - 撤銷上一個操作
+  redo - 重做上一個撤銷的操作
+  reset - 重置鍵盤
+  help - 顯示幫助
+  exit/quit - 退出系統
+Tank is moving forward a step.
+Execute: a
+Tank is moving backward a step.
+Execute: b
+Binding control on : Token m for Command TankMoveForwardCommand
+Macro command has bound to: m
+Tank is moving forward a step.
+Tank is moving backward a step.
+Tank is moving forward a step.
+Execute: m

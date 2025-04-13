@@ -5,6 +5,7 @@ import indv.amer.device.Device;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collections;
@@ -16,10 +17,8 @@ import java.util.Stack;
 @NoArgsConstructor
 public class Keyboard implements Device {
     private Map<String, KeyboardCommand<?>> commandMap = new HashMap<>();
-
     // Caching Memories for undo-reset
     private Map<String, KeyboardCommand<?>> lastCommandMap = new HashMap<>();
-
     private final Stack<KeyboardCommand<?>> doStack = new Stack<>();
     private final Stack<KeyboardCommand<?>> undoStack = new Stack<>();
 
@@ -57,6 +56,7 @@ public class Keyboard implements Device {
         }
 
         KeyboardCommand<?> onDoCommand = this.commandMap.get(commandToken);
+        onDoCommand.execute();
         this.doStack.push(onDoCommand);
         this.undoStack.clear();
     }
@@ -82,10 +82,27 @@ public class Keyboard implements Device {
     }
 
     private boolean isValidCommandToken(String commandToken){
-        // we could set constraints for command token here, for examples: A-Z only .
-        return true;
+        // Check if the command token is a single lowercase letter (a-z)
+        return commandToken != null && commandToken.length() == 1 &&
+                commandToken.charAt(0) >= 'a' && commandToken.charAt(0) <= 'z';
     }
 
-    // TODO Reset Command Map
+    public void resetControlBinding(){
+        if(MapUtils.isEmpty(this.commandMap)){
+            log.info("No command bindings is exists.");
+        }else{
+            this.lastCommandMap = Map.copyOf(this.commandMap);
+            this.commandMap = new HashMap<>();
+            log.info("Command Binding is clear now.");
+        }
+    }
+
+    public void recoverResetControlBinding(){
+        if(MapUtils.isEmpty(this.lastCommandMap)){
+            log.info("No command bindings could be recovered.");
+        }else{
+            this.commandMap = Map.copyOf(this.lastCommandMap);
+        }
+    }
 
 }

@@ -19,10 +19,10 @@ public class Telecom implements Device {
         }
     }
     public void disconnect() {
-        if(isConnected){
+        if(!isConnected){
             log.info("Telecom is already disconnected.");
         }else{
-            isConnected = true;
+            isConnected = false;
             log.info("Telecom is disconnected.");
         }
     }

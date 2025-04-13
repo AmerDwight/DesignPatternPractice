@@ -3,8 +3,8 @@ package indv.amer.command;
 import indv.amer.device.Telecom;
 
 public class TelecomDisconnectCommand extends KeyboardCommand<Telecom> {
-    public TelecomDisconnectCommand(KeyboardCommand<?> nextCommand, Telecom device) {
-        super(nextCommand, device);
+    public TelecomDisconnectCommand(Telecom device, KeyboardCommand<?> nextCommand) {
+        super(device, nextCommand);
     }
 
     public TelecomDisconnectCommand(Telecom _device) {
