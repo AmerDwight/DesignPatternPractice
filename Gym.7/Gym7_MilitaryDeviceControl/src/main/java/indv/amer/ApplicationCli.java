@@ -11,13 +11,13 @@ import java.lang.reflect.Constructor;
 import java.util.Scanner;
 
 @Slf4j
-public class SoliderCLI {
+public class ApplicationCli {
     private final Keyboard keyboard;
     private final Tank tank;
     private final Telecom telecom;
     private final Scanner scanner;
 
-    public SoliderCLI() {
+    public ApplicationCli() {
         // 初始化設備
         keyboard = new Keyboard();
         tank = new Tank();
@@ -193,7 +193,7 @@ public class SoliderCLI {
     }
 
     public static void main(String[] args) {
-        SoliderCLI cli = new SoliderCLI();
+        ApplicationCli cli = new ApplicationCli();
         cli.start();
 
         // try macro example:

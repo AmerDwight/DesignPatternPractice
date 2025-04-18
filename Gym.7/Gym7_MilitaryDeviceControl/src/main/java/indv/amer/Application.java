@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.stream.IntStream;
 
 @Slf4j
-public class Solider {
+public class Application {
     public static void main(String[] args) {
         // inti devices
         Keyboard keyboard = new Keyboard();
