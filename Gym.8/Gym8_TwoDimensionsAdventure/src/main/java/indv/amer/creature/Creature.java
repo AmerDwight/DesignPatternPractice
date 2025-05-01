@@ -1,5 +1,6 @@
 package indv.amer.creature;
 
+import indv.amer.AdventureMap;
 import indv.amer.MapObject;
 import indv.amer.creature.state.Normal;
 import indv.amer.creature.state.State;
@@ -12,6 +13,8 @@ public abstract class Creature extends MapObject {
     private int HP;
     private boolean isAlive;
     private State state = new Normal(this);
+
+    public abstract void action(AdventureMap map);
 
     public Creature(String symbol, String _name, int initHP) {
         super(symbol);
