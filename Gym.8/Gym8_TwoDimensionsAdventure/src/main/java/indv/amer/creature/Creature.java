@@ -2,9 +2,13 @@ package indv.amer.creature;
 
 import indv.amer.AdventureMap;
 import indv.amer.MapObject;
-import indv.amer.creature.state.Normal;
-import indv.amer.creature.state.State;
+import indv.amer.state.instance.Normal;
+import indv.amer.state.State;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public abstract class Creature extends MapObject {
@@ -13,8 +17,11 @@ public abstract class Creature extends MapObject {
     private int HP;
     private boolean isAlive;
     private State state = new Normal(this);
+    @Setter
+    private List<CreatureActionCommand> availableActionList = List.of(CreatureActionCommand.values());
+    private AdventureMap map;
 
-    public abstract void action(AdventureMap map);
+    public abstract void action();
 
     public Creature(String symbol, String _name, int initHP) {
         super(symbol);
@@ -41,7 +48,7 @@ public abstract class Creature extends MapObject {
     public void getHeal(int milk) {
         if (this.isAlive) {
             this.HP += milk;
-        }else{
+        } else {
             log.info("We don't do anything on dead body, are you hentai?");
         }
     }

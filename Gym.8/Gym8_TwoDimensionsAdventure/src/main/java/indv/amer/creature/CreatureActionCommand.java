@@ -1,9 +1,9 @@
-package indv.amer.creature.character;
+package indv.amer.creature;
 
 import java.util.Arrays;
 import java.util.List;
 
-public enum CharacterCommand {
+public enum CreatureActionCommand {
     MOVE_UP,
     MOVE_DOWN,
     MOVE_LEFT,

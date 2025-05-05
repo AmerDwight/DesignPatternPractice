@@ -1,0 +1,11 @@
+package indv.amer.treasure.instance;
+
+import indv.amer.creature.Creature;
+import indv.amer.treasure.Treasure;
+
+public class HealingPotion extends Treasure {
+    @Override
+    public void effect(Creature creature) {
+
+    }
+}
