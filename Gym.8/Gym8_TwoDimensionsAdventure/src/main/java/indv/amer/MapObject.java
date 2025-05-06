@@ -7,4 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public abstract class MapObject {
     private String Symbols;
+    private MapPosition position;
 }

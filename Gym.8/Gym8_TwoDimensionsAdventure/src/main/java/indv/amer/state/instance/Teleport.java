@@ -10,6 +10,12 @@ public class Teleport extends TimelyState {
 
     @Override
     public void doEffect() {
-        // TODO Get 空地轉移
+
+    }
+
+    @Override
+    public void exitState() {
+        // TODO TELEPORT
+        super.exitState();
     }
 }
