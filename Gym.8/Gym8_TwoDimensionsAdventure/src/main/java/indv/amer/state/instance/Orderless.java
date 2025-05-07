@@ -1,7 +1,7 @@
 package indv.amer.state.instance;
 
 import indv.amer.creature.Creature;
-import indv.amer.creature.CreatureActionCommand;
+import indv.amer.creature.ActionCommand;
 import indv.amer.state.TimelyState;
 
 import java.util.List;
@@ -17,15 +17,15 @@ public class Orderless extends TimelyState {
     @Override
     public void doEffect() {
         if (this.random.nextDouble() > 0.5) {
-            this.creature.setAvailableActionList(List.of(CreatureActionCommand.MOVE_UP, CreatureActionCommand.MOVE_DOWN));
+            this.creature.setAvailableActionList(List.of(ActionCommand.MOVE_UP, ActionCommand.MOVE_DOWN));
         } else {
-            this.creature.setAvailableActionList(List.of(CreatureActionCommand.MOVE_LEFT, CreatureActionCommand.MOVE_RIGHT));
+            this.creature.setAvailableActionList(List.of(ActionCommand.MOVE_LEFT, ActionCommand.MOVE_RIGHT));
         }
     }
 
     @Override
     public void exitState() {
-        this.creature.setAvailableActionList(List.of(CreatureActionCommand.values()));
+        this.creature.setAvailableActionList(List.of(ActionCommand.values()));
         super.exitState();
     }
 }

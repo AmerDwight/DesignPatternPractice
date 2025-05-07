@@ -47,6 +47,10 @@ public class AdventureMap {
         return newEmptyMap;
     }
 
+    public boolean isPositionEmpty(@NonNull MapPosition mapPosition) {
+        return null == this.map.get(mapPosition.getDimensionX()).get(mapPosition.getDimensionY());
+    }
+
     public List<MapPosition> getEmptyPositions() {
         List<MapPosition> availablePositions = new ArrayList<>();
         for (int x = 0; x < this.length; x++) {
@@ -57,6 +61,16 @@ public class AdventureMap {
             }
         }
         return availablePositions;
+    }
+
+    public void moveObject(MapObject mapObject, MapPosition toPosition) {
+        if (this.isPositionEmpty(toPosition)) {
+            this.eliminateMapObject(mapObject);
+            this.map.get(toPosition.getDimensionX()).put(toPosition.getDimensionY(), mapObject);
+            mapObject.setPosition(toPosition);
+        } else {
+            log.warn("Move failed, destination is not empty.");
+        }
     }
 
     public void eliminateMapObject(MapObject mapObject) {

@@ -3,7 +3,7 @@ package indv.amer.creature;
 import java.util.Arrays;
 import java.util.List;
 
-public enum CreatureActionCommand {
+public enum ActionCommand {
     MOVE_UP,
     MOVE_DOWN,
     MOVE_LEFT,

@@ -1,0 +1,5 @@
+考慮過 設置 MapViewer、 MapController 來管理對於Map控制的權限
+不過這樣是不是等於
+GameConsole 要有一個MapController物件?
+並且
+Teleport State 要怎麼控制得到對Map的控制?

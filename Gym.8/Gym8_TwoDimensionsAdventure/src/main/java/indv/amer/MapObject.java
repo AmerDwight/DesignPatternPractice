@@ -8,4 +8,5 @@ import lombok.Data;
 public abstract class MapObject {
     private String Symbols;
     private MapPosition position;
+    private AdventureMap map;
 }
