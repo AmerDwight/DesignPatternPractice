@@ -1,6 +1,7 @@
 package indv.amer;
 
 import indv.amer.creature.Creature;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 @Slf4j
+@Data
 public class AdventureMap {
     private int length;
     private int width;
@@ -87,6 +89,13 @@ public class AdventureMap {
                 .filter(obj -> obj instanceof Creature)
                 .map(obj -> (Creature) obj)
                 .toList();
+    }
+
+    public MapObject getMapObjectByPosition(MapPosition mapPosition) {
+        if (MapPosition.isValidPosition(mapPosition, this)) {
+            return this.map.get(mapPosition.getDimensionX()).get(mapPosition.getDimensionY());
+        }
+        return null;
     }
 
 }

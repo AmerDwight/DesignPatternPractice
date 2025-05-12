@@ -25,10 +25,23 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
     private State state;
     private List<ActionCommand> availableActionList;
 
-    public abstract void action();
+    public void action() {
+        ActionCommand chosenCommand;
+        do {
+            chosenCommand = this.choseAction(availableActionList);
+        } while (!availableActionList.contains(chosenCommand));
 
-    public Creature(String symbol, int initHP, MapPosition position, AttackAction<T> attackAction) {
-        super(symbol, position);
+        if (chosenCommand == ActionCommand.ATTACK) {
+            attackAction.attack((T) this, this.getMap());
+        } else {
+            moveAction.move(this, chosenCommand, this.getMap());
+        }
+    }
+
+    protected abstract ActionCommand choseAction(List<ActionCommand> availableActionList);
+
+    public Creature(String symbol, int initHP, MapPosition position, AttackAction<T> attackAction, AdventureMap map) {
+        super(symbol, position, map);
         this.HP = initHP;
         this.attackAction = attackAction;
         this.moveAction = new SingleStepMove();
