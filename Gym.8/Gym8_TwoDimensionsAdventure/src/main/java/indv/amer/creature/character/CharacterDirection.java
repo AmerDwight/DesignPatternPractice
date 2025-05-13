@@ -1,12 +1,21 @@
 package indv.amer.creature.character;
 
+import lombok.Getter;
+
 import java.util.Random;
 
+@Getter
 public enum CharacterDirection {
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN;
+    LEFT(""),
+    RIGHT(""),
+    UP(""),
+    DOWN("");
+
+    final String directionSymbol;
+
+    CharacterDirection(String _directionSymbol) {
+        this.directionSymbol = _directionSymbol;
+    }
 
     public static CharacterDirection getRandomDirection() {
         Random random = new Random();

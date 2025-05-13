@@ -21,7 +21,7 @@ public class CommandReader {
             Scanner scanner = new Scanner(System.in);
             input = scanner.next();
             if (acceptedCommandInUpperCase.contains(input.toUpperCase())) {
-                return
+                return ActionCommand.getCommandByName(input);
             } else {
                 log.info("Please give a legal command, such as: {}", acceptedCommandInUpperCase);
             }
