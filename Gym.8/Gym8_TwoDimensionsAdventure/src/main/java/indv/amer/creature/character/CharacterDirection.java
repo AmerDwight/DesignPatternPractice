@@ -1,20 +1,30 @@
 package indv.amer.creature.character;
 
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Random;
 
 @Getter
 public enum CharacterDirection {
-    LEFT(""),
-    RIGHT(""),
-    UP(""),
-    DOWN("");
+    LEFT("←"),
+    RIGHT("→"),
+    UP("↑"),
+    DOWN("↓");
 
     final String directionSymbol;
 
     CharacterDirection(String _directionSymbol) {
         this.directionSymbol = _directionSymbol;
+    }
+
+    public static CharacterDirection getBySymbol(String symbol) {
+        for (CharacterDirection direction : CharacterDirection.values()) {
+            if (StringUtils.equalsIgnoreCase(symbol, direction.getDirectionSymbol())) {
+                return direction;
+            }
+        }
+        throw new IllegalArgumentException("Not exists such symbol: " + symbol);
     }
 
     public static CharacterDirection getRandomDirection() {

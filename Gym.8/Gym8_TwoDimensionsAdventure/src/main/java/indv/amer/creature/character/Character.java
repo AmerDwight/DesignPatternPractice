@@ -3,7 +3,7 @@ package indv.amer.creature.character;
 import indv.amer.AdventureMap;
 import indv.amer.CommandReader;
 import indv.amer.MapPosition;
-import indv.amer.action.attack.AttackAction;
+import indv.amer.action.attack.CharacterAttack;
 import indv.amer.creature.ActionCommand;
 import indv.amer.creature.Creature;
 import lombok.Getter;
@@ -17,10 +17,10 @@ public class Character extends Creature<Character> {
     @Getter
     CharacterDirection direction;
 
-    public Character(CharacterDirection initDirection, int initHP, MapPosition position, AttackAction<Character> attackAction, AdventureMap map, CommandReader _commandReader) {
-        super(initDirection.getDirectionSymbol(), initHP, position, attackAction, map);
+    public Character(int initHP, AdventureMap map, CommandReader _commandReader) {
+        super(CharacterDirection.getRandomDirection().getDirectionSymbol(), initHP, new CharacterAttack(), map);
         this.commandReader = _commandReader;
-        direction = initDirection;
+        direction = CharacterDirection.getBySymbol(this.getSymbol());
     }
 
     @Override
@@ -40,17 +40,14 @@ public class Character extends Creature<Character> {
         if (chosenAction != ActionCommand.ATTACK) {
             if (chosenAction == ActionCommand.MOVE_UP) {
                 this.direction = CharacterDirection.UP;
-                this.setSymbol("↑");
             } else if (chosenAction == ActionCommand.MOVE_DOWN) {
                 this.direction = CharacterDirection.DOWN;
-                this.setSymbol("↓");
             } else if (chosenAction == ActionCommand.MOVE_LEFT) {
                 this.direction = CharacterDirection.LEFT;
-                this.setSymbol("←");
             } else if (chosenAction == ActionCommand.MOVE_RIGHT) {
                 this.direction = CharacterDirection.RIGHT;
-                this.setSymbol("→");
             }
+            this.setSymbol(this.direction.getDirectionSymbol());
         }
         return chosenAction;
     }

@@ -40,8 +40,8 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
 
     protected abstract ActionCommand choseAction(List<ActionCommand> availableActionList);
 
-    public Creature(String symbol, int initHP, MapPosition position, AttackAction<T> attackAction, AdventureMap map) {
-        super(symbol, position, map);
+    public Creature(String symbol, int initHP, AttackAction<T> attackAction, AdventureMap map) {
+        super(symbol, map);
         this.HP = initHP;
         this.attackAction = attackAction;
         this.moveAction = new SingleStepMove();

@@ -12,8 +12,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.*;
 
 public class Monster extends Creature<Monster> {
-    public Monster(MapPosition position, AdventureMap map) {
-        super("M", 1, position, new MonsterAttack(), map);
+    public Monster(AdventureMap map) {
+        super("M", 1, new MonsterAttack(), map);
     }
 
     @Override

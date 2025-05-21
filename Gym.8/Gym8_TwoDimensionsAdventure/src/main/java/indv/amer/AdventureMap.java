@@ -5,11 +5,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @Slf4j
@@ -28,15 +26,27 @@ public class AdventureMap {
         this.map = initEmptyMap(this.length);
     }
 
-    public void init(@NonNull Character character, int monsterCount, int treasureCount) {
-        // Verify
-        if (monsterCount + treasureCount + 1 > this.length * this.width) {
-            log.info("Too many things inside the map, please retry.");
+    public MapPosition getRandomEmptyPosition() {
+        List<MapPosition> emptyPositions = getEmptyPositions();
+        if (CollectionUtils.isNotEmpty(emptyPositions)) {
+            Collections.shuffle(emptyPositions);
+            return emptyPositions.get(0);
+        } else {
+            log.warn("No empty map space left.");
+            return null;
         }
-        if (monsterCount <= 0) {
+    }
 
+    public void randomlyPutObject(@NonNull MapObject mapObject) {
+        List<MapPosition> emptyPositions = getEmptyPositions();
+        if (CollectionUtils.isNotEmpty(emptyPositions)) {
+            Collections.shuffle(emptyPositions);
+            MapPosition destination = emptyPositions.get(0);
+            mapObject.setPosition(destination);
+            this.map.get(destination.getDimensionX()).get(destination.getDimensionY());
+        } else {
+            log.warn("No empty map space left.");
         }
-
     }
 
     private Map<Integer, Map<Integer, MapObject>> initEmptyMap(int mapLength) {
