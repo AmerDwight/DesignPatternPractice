@@ -1,12 +1,12 @@
 package indv.amer.adventure.state.instance;
 
 import indv.amer.adventure.creature.Creature;
-import indv.amer.adventure.state.OnHurtReactState;
+import indv.amer.adventure.state.DamageRecalculateState;
 import indv.amer.adventure.state.TimelyState;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Invincible extends TimelyState implements OnHurtReactState {
+public class Invincible extends TimelyState implements DamageRecalculateState {
 
 
     public Invincible(Creature creature) {

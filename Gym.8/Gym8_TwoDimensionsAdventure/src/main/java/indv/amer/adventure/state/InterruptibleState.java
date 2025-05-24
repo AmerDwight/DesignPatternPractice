@@ -1,4 +1,4 @@
 package indv.amer.adventure.state;
 
-public interface InteruptableState {
+public interface InterruptibleState {
 }

@@ -1,13 +1,12 @@
 package indv.amer.adventure.state.instance;
 
 import indv.amer.adventure.creature.Creature;
-import indv.amer.adventure.state.OnHurtReactState;
-import indv.amer.adventure.state.InteruptableState;
+import indv.amer.adventure.state.InterruptibleState;
 import indv.amer.adventure.state.TimelyState;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Stockpile extends TimelyState implements InteruptableState {
+public class Stockpile extends TimelyState implements InterruptibleState {
     public Stockpile(Creature creature) {
         super(creature, 3);
     }

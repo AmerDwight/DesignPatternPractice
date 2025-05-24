@@ -5,9 +5,8 @@ import indv.amer.adventure.map.MapObject;
 import indv.amer.adventure.action.attack.AttackAction;
 import indv.amer.adventure.action.move.MoveAction;
 import indv.amer.adventure.action.move.SingleStepMove;
-import indv.amer.adventure.state.InteruptableState;
-import indv.amer.adventure.state.OnHurtReactState;
-import indv.amer.adventure.state.instance.Invincible;
+import indv.amer.adventure.state.InterruptibleState;
+import indv.amer.adventure.state.DamageRecalculateState;
 import indv.amer.adventure.state.instance.Normal;
 import indv.amer.adventure.state.State;
 import lombok.Getter;
@@ -64,13 +63,13 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
 
     public void getHurt(int damage) {
         if (this.isAlive()) {
-            if (this.getState() instanceof OnHurtReactState) {
-                damage = ((OnHurtReactState) this.getState()).recalculateDamage(damage);
+            if (this.getState() instanceof DamageRecalculateState) {
+                damage = ((DamageRecalculateState) this.getState()).recalculateDamage(damage);
             }
             this.HP -= damage;
             log.info("{} is hurt! damage = {}, HP left: {}", this.getSymbol(), damage, this.HP);
             if (damage > 0) {
-                if (this.getState() instanceof InteruptableState) {
+                if (this.getState() instanceof InterruptibleState) {
                     log.info("{} is hurt, cancel {} state.", this.getSymbol(), this.getState().getClass().getSimpleName());
                     this.changeState(new Normal(this));
                 }
