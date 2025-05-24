@@ -5,6 +5,7 @@ import indv.amer.adventure.map.MapObject;
 import indv.amer.adventure.action.attack.AttackAction;
 import indv.amer.adventure.action.move.MoveAction;
 import indv.amer.adventure.action.move.SingleStepMove;
+import indv.amer.adventure.state.OnHurtReactState;
 import indv.amer.adventure.state.instance.Normal;
 import indv.amer.adventure.state.State;
 import lombok.Getter;
@@ -19,6 +20,7 @@ import java.util.List;
 public abstract class Creature<T extends Creature<T>> extends MapObject {
 
     private int HP;
+    private AttackAction<T> DEFAULT_ATTACK;
     private AttackAction<T> attackAction;
     private MoveAction moveAction;
     private State state;
@@ -43,6 +45,7 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
     public Creature(String symbol, int initHP, AttackAction<T> _attackAction, AdventureMap _map) {
         super(symbol);
         this.HP = initHP;
+        this.DEFAULT_ATTACK = _attackAction;
         this.attackAction = _attackAction;
         this.moveAction = new SingleStepMove();
         this.state = new Normal(this);
@@ -51,11 +54,15 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
     }
 
     public void changeState(State newState) {
+        log.info("{} got state: {}", this.getSymbol(), newState.getClass().getSimpleName());
         this.state = newState;
     }
 
     public void getHurt(int damage) {
         if (this.isAlive()) {
+            if (this.getState() instanceof OnHurtReactState) {
+                damage = ((OnHurtReactState) this.getState()).recalculateDamage(damage);
+            }
             this.HP -= damage;
             if (this.HP < 0) {
                 log.info("{} is dead!", this.getClass().getSimpleName());
@@ -75,5 +82,9 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
 
     public boolean isAlive() {
         return this.HP > 0;
+    }
+
+    public void resetAttack() {
+        this.attackAction = this.DEFAULT_ATTACK;
     }
 }

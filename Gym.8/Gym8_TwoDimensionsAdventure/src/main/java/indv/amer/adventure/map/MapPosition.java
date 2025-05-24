@@ -10,7 +10,7 @@ public class MapPosition {
     private int dimensionY;
 
     public static boolean isValidPosition(MapPosition position, AdventureMap map) {
-        return (position.getDimensionX() <= map.getLength() && position.getDimensionX() >= 0) &&
-                (position.getDimensionY() <= map.getWidth() && position.getDimensionY() >= 0);
+        return (position.getDimensionX() < map.getLength() && position.getDimensionX() >= 0) &&
+                (position.getDimensionY() < map.getWidth() && position.getDimensionY() >= 0);
     }
 }

@@ -42,8 +42,7 @@ public class AdventureMap {
         if (CollectionUtils.isNotEmpty(emptyPositions)) {
             Collections.shuffle(emptyPositions);
             MapPosition destination = emptyPositions.get(0);
-            mapObject.setPosition(destination);
-            this.map.get(destination.getDimensionX()).put(destination.getDimensionY(),mapObject);
+            this.moveObject(mapObject, destination);
         } else {
             log.warn("No empty map space left.");
         }
@@ -60,7 +59,10 @@ public class AdventureMap {
     }
 
     public boolean isPositionEmpty(@NonNull MapPosition mapPosition) {
-        return null == this.map.get(mapPosition.getDimensionX()).get(mapPosition.getDimensionY());
+        if (MapPosition.isValidPosition(mapPosition, this)) {
+            return null == this.map.get(mapPosition.getDimensionX()).get(mapPosition.getDimensionY());
+        }
+        return false;
     }
 
     public List<MapPosition> getEmptyPositions() {
@@ -76,19 +78,26 @@ public class AdventureMap {
     }
 
     public void moveObject(MapObject mapObject, MapPosition toPosition) {
-        if (this.isPositionEmpty(toPosition)) {
-            this.eliminateMapObject(mapObject);
-            this.map.get(toPosition.getDimensionX()).put(toPosition.getDimensionY(), mapObject);
-            mapObject.setPosition(toPosition);
+        if (MapPosition.isValidPosition(toPosition, this)) {
+            if (this.isPositionEmpty(toPosition)) {
+                this.eliminateMapObject(mapObject);
+                this.map.get(toPosition.getDimensionX()).put(toPosition.getDimensionY(), mapObject);
+                mapObject.setPosition(toPosition);
+            } else {
+                log.warn("{} Move to {} failed, Hit {} .", mapObject.getSymbol(), toPosition, this.getMapObjectByPosition(toPosition).getSymbol());
+            }
         } else {
-            log.warn("Move failed, destination is not empty.");
+            log.warn("{} Hit Wall... ", mapObject.getSymbol());
         }
+
     }
 
     public void eliminateMapObject(MapObject mapObject) {
         if (mapObject != null) {
             MapPosition position = mapObject.getPosition();
-            this.map.get(position.getDimensionX()).put(position.getDimensionY(), null);
+            if (position != null) {
+                this.map.get(position.getDimensionX()).put(position.getDimensionY(), null);
+            }
         }
     }
 
@@ -117,16 +126,16 @@ public class AdventureMap {
         );
         log.info("------------------------------------------");
         for (int i = 0; i < this.length; i++) {
-            for(int j = 0 ; j < this.width; j++){
+            for (int j = 0; j < this.width; j++) {
                 MapObject obj = map.get(i).get(j);
-                if(obj == null){
+                if (obj == null) {
                     mapBuilder.get(j).append("　");
-                }else{
+                } else {
                     mapBuilder.get(j).append(obj.getSymbol());
                 }
             }
         }
-        for(StringBuilder sb : mapBuilder){
+        for (StringBuilder sb : mapBuilder) {
             log.info(sb.toString());
         }
         log.info("------------------------------------------");

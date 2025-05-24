@@ -12,10 +12,10 @@ public class SingleStepMove extends MoveAction {
 
         switch (moveAction) {
             case MOVE_UP:
-                nextY += 1;
+                nextY -= 1;
                 break;
             case MOVE_DOWN:
-                nextY -= 1;
+                nextY += 1;
                 break;
             case MOVE_LEFT:
                 nextX -= 1;

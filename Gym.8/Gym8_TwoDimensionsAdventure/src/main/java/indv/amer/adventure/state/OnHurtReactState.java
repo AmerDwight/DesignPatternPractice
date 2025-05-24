@@ -1,5 +1,5 @@
 package indv.amer.adventure.state;
 
-public interface CoreState {
+public interface OnHurtReactState {
     int recalculateDamage(int originDamage);
 }

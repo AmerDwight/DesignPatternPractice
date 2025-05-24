@@ -22,8 +22,29 @@ public class CommandReader {
             if (acceptedCommandInUpperCase.contains(input.toUpperCase())) {
                 return ActionCommand.getCommandByName(input);
             } else {
-                log.info("Please give a legal command, such as: {}", acceptedCommandInUpperCase);
+                ActionCommand actionCommand = shortCut(input);
+                if (actionCommand != null) {
+                    return actionCommand;
+                } else {
+                    log.info("Please give a legal command, such as: {}", acceptedCommandInUpperCase);
+                }
             }
         }
+    }
+
+    private ActionCommand shortCut(String input) {
+        String upperInput = input.toUpperCase();
+        if (upperInput.contains("U")) {
+            return ActionCommand.MOVE_UP;
+        } else if (upperInput.contains("D")) {
+            return ActionCommand.MOVE_DOWN;
+        } else if (upperInput.contains("L")) {
+            return ActionCommand.MOVE_LEFT;
+        } else if (upperInput.contains("R")) {
+            return ActionCommand.MOVE_RIGHT;
+        } else if (upperInput.contains("A")) {
+            return ActionCommand.ATTACK;
+        }
+        return null;
     }
 }

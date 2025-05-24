@@ -1,10 +1,12 @@
 package indv.amer.adventure.state.instance;
 
 import indv.amer.adventure.creature.Creature;
-import indv.amer.adventure.state.CoreState;
+import indv.amer.adventure.state.OnHurtReactState;
 import indv.amer.adventure.state.TimelyState;
+import lombok.extern.slf4j.Slf4j;
 
-public class Invincible extends TimelyState implements CoreState {
+@Slf4j
+public class Invincible extends TimelyState implements OnHurtReactState {
 
 
     public Invincible(Creature creature) {
@@ -13,6 +15,7 @@ public class Invincible extends TimelyState implements CoreState {
 
     @Override
     public int recalculateDamage(int originDamage) {
+        log.info("{} is invincible, zero damage.", this.creature.getSymbol());
         return 0;
     }
 

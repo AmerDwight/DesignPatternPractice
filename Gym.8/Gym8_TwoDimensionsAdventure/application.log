@@ -1,24 +1,64 @@
-生成寶物類型: DokodemoDoor, 描述: 觸碰者獲得瞬身狀態
-生成寶物類型: HealingPotion, 描述: 觸碰者獲得恢復狀態
-生成寶物類型: DokodemoDoor, 描述: 觸碰者獲得瞬身狀態
-生成寶物類型: DevilFruit, 描述: 觸碰者獲得混亂狀態
-生成寶物類型: HealingPotion, 描述: 觸碰者獲得恢復狀態
-生成寶物類型: DokodemoDoor, 描述: 觸碰者獲得瞬身狀態
-生成寶物類型: Poison, 描述: 觸碰者獲得中毒狀態
-生成寶物類型: AcceleratingPotion, 描述: 觸碰者獲得加速狀態
-生成寶物類型: AcceleratingPotion, 描述: 觸碰者獲得加速狀態
-生成寶物類型: Poison, 描述: 觸碰者獲得中毒狀態
 ------------------------------------------
-　x　　　　　　　　
-　　　x　　　　　M
-　　　　x　　←　　
-　　　　　　　　　　
-　　　M　　　　x　
-　　　　　xx　　　
-　x　x　M　　M　
-　　　M　　　　x　
-　　M　　M　M　　
-　　　x　　　M　M
+　　　　　　x　　　
+　　M　　　　　　　
+　　　x　M　M　　
+M　　　　M　　　　
+x　　x　　　　　　
+　　M　　　　　　M
+　　　　　　x　→　
+　　　　　　　　Mx
+　　　　　　　x　M
+　　xx　　x　　M
 ------------------------------------------
 Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
-MOVE_RIGHT is not a move action.
+M Hit Wall... 
+M found a treaure: SuperStar !!
+M got state: Invincible
+------------------------------------------
+　　　　　　x　　　
+　　　M　　　M　　
+　　　x　MM　　　
+M　　　　　　　　　
+x　Mx　　　　　　
+　　　　　　　　　　
+　　　　　　x←　M
+　　　　　　　　M　
+　　　　　　　xMM
+　　xx　　x　　　
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
+← found a treaure: SuperStar !!
+← got state: Invincible
+M found a treaure: SuperStar !!
+M got state: Invincible
+M Hit Wall... 
+------------------------------------------
+　　　　　　x　　　
+　　　　MM　　M　
+　　　x　　　M　　
+　M　　　　　　　　
+x　M　　　　　　　
+　　　　　　　　　　
+　　　　　　　←　M
+　　　　　　　M　M
+　　　　　　　x　　
+　　xx　　x　M　
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
+↓ Move to MapPosition(dimensionX=7, dimensionY=7) failed, Hit M .
+M is attacking!
+↓ is hurt!
+M Hit Wall... 
+------------------------------------------
+　　　　M　x　　　
+　　　　　　MM　　
+　　　x　　　　M　
+M　　　　　　　　　
+x　　M　　　　　　
+　　　　　　　　　　
+　　　　　　　↓　M
+　　　　　　　M　　
+　　　　　　　xMM
+　　xx　　x　　　
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]

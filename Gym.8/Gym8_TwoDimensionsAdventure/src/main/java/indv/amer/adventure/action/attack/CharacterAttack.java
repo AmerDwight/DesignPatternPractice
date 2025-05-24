@@ -46,7 +46,7 @@ public class CharacterAttack extends AttackAction<Character> {
                 onAttackPositions.add(new MapPosition(i, here.getDimensionY()));
             }
         } else if (character.getDirection().equals(CharacterDirection.RIGHT)) {
-            for (int i = here.getDimensionY(); i < map.getLength(); i++) {
+            for (int i = here.getDimensionX(); i < map.getLength(); i++) {
                 onAttackPositions.add(new MapPosition(i, here.getDimensionY()));
             }
         }
