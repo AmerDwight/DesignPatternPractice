@@ -10,13 +10,18 @@ public class Erupting extends TimelyState {
     public Erupting(Creature creature) {
         super(creature, 3);
     }
+
     @Override
-    public void doEffect() {
-        if(!(this.creature.getAttackAction() instanceof EruptingAttack)){
-            log.info("{} change attack method: {}", this.creature.getSymbol(),EruptingAttack.class.getSimpleName());
+    public void enterState() {
+        if (!(this.creature.getAttackAction() instanceof EruptingAttack)) {
+            log.info("{} change attack method: {}", this.creature.getSymbol(), EruptingAttack.class.getSimpleName());
             this.creature.setAttackAction(new EruptingAttack());
         }
+    }
 
+    @Override
+    public void doEffect() {
+        // Leave Blank
     }
 
     @Override

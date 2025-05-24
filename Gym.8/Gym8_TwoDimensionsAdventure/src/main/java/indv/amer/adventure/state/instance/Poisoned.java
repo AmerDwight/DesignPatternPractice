@@ -10,9 +10,15 @@ public class Poisoned extends TimelyState {
         super(creature, 3);
     }
 
+    private final int POISONED_DAMAGE = 15;
+
     @Override
     public void doEffect() {
-        log.info("Poisoned State: {} urrrr...", this.creature.getSymbol());
-        this.creature.getHurt(15);
+        this.creature.setHP(this.creature.getHP() - POISONED_DAMAGE);
+        log.info("Poisoned State: {} urrrr... poisoned {} damage, HP = {}",
+                this.creature.getSymbol(),
+                this.POISONED_DAMAGE,
+                this.creature.getHP());
+
     }
 }

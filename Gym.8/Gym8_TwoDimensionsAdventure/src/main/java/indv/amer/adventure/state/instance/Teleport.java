@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Teleport extends TimelyState {
     public Teleport(Creature creature) {
-        super(creature, 1);
+        super(creature, 2);
     }
 
     @Override

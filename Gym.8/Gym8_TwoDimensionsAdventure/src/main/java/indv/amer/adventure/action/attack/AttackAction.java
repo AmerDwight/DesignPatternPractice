@@ -16,7 +16,6 @@ public abstract class AttackAction<T extends Creature<T>> {
         List<Creature<?>> getHurtCreatures = this.doAttack(creature, map);
         getHurtCreatures.forEach(
                 hurtCreature -> {
-                    log.info("{} is hurt!", hurtCreature.getSymbol());
                     if (!hurtCreature.isAlive()) {
                         log.info("{} is dead!", hurtCreature.getSymbol());
                         map.eliminateMapObject(hurtCreature);

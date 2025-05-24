@@ -1,6 +1,6 @@
 package indv.amer.adventure.treasure;
 
-import indv.amer.adventure.treasure.instance.SuperStar;
+import indv.amer.adventure.treasure.instance.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
@@ -51,10 +51,9 @@ public class TreasureFactory {
             }
 
             TreasureGenerateProbabilities selectedType = entry.getValue();
-//            log.info("生成寶物類型: {}, 描述: {}", selectedType.getTreasureName(), selectedType.getEffectDescription());
+            log.info("生成寶物類型: {}, 描述: {}", selectedType.getTreasureName(), selectedType.getEffectDescription());
             // 使用 getInstance 方法創建寶物實例
-//            return selectedType.getInstance();
-            return new SuperStar();
+            return selectedType.getInstance();
         } catch (Exception e) {
             log.error("創建隨機寶物時發生錯誤", e);
             throw new RuntimeException("Error creating random treasure", e);

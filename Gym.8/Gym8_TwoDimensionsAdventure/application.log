@@ -1,64 +1,150 @@
 ------------------------------------------
+　　　　x　　　　　
+x　x　　　　x　x
+x　　　　　　x　　
+　　　　　x　↑　x
+　xx　　x　x　　
+　　　M　　　　　　
 　　　　　　x　　　
-　　M　　　　　　　
-　　　x　M　M　　
-M　　　　M　　　　
-x　　x　　　　　　
-　　M　　　　　　M
-　　　　　　x　→　
-　　　　　　　　Mx
-　　　　　　　x　M
-　　xx　　x　　M
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
 ------------------------------------------
 Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
-M Hit Wall... 
-M found a treaure: SuperStar !!
-M got state: Invincible
+↑ found a treaure: DokodemoDoor !!
+↑ got state: Teleport
 ------------------------------------------
-　　　　　　x　　　
-　　　M　　　M　　
-　　　x　MM　　　
-M　　　　　　　　　
-x　Mx　　　　　　
+　　　　x　　　　　
+x　x　　　　x　x
+x　　　　　　　　　
+　　　　　x　↑　x
+　xxM　x　x　　
 　　　　　　　　　　
-　　　　　　x←　M
-　　　　　　　　M　
-　　　　　　　xMM
-　　xx　　x　　　
+　　　　　　x　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
 ------------------------------------------
 Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
-← found a treaure: SuperStar !!
-← got state: Invincible
-M found a treaure: SuperStar !!
-M got state: Invincible
-M Hit Wall... 
+↑'s Teleport state over
+↑'s Teleport state over
+↑ got state: Normal
 ------------------------------------------
+　　　　x　　　　　
+x　x　　　　x　x
+x　　　　↑　　　　
+　　　M　x　　　x
+　xx　　x　x　　
+　　　　　　　　　　
 　　　　　　x　　　
-　　　　MM　　M　
-　　　x　　　M　　
-　M　　　　　　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
+------------------------------------------
+　　　　x　　　　　
+x　x　　↑　x　x
+x　　　　　　　　　
+　　M　　x　　　x
+　xx　　x　x　　
+　　　　　　　　　　
+　　　　　　x　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
+------------------------------------------
+　　　　x↑　　　　
+x　x　　　　x　x
 x　M　　　　　　　
+　　　　　x　　　x
+　xx　　x　x　　
 　　　　　　　　　　
-　　　　　　　←　M
-　　　　　　　M　M
-　　　　　　　x　　
-　　xx　　x　M　
+　　　　　　x　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
 ------------------------------------------
 Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
-↓ Move to MapPosition(dimensionX=7, dimensionY=7) failed, Hit M .
-M is attacking!
-↓ is hurt!
-M Hit Wall... 
+← found a treaure: DokodemoDoor !!
+← got state: Teleport
 ------------------------------------------
-　　　　M　x　　　
-　　　　　　MM　　
-　　　x　　　　M　
-M　　　　　　　　　
+　　　　　←　　　　
+x　x　　　　x　x
 x　　M　　　　　　
+　　　　　x　　　x
+　xx　　x　x　　
 　　　　　　　　　　
-　　　　　　　↓　M
-　　　　　　　M　　
-　　　　　　　xMM
-　　xx　　x　　　
+　　　　　　x　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
+←'s Teleport state over
+←'s Teleport state over
+← got state: Normal
+------------------------------------------
+　　　　　　　　←　
+x　x　　　　x　x
+x　　　　　　　　　
+　　　M　x　　　x
+　xx　　x　x　　
+　　　　　　　　　　
+　　　　　　x　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
+------------------------------------------
+　　　　　　　　　　
+x　x　　　　x↓x
+x　　　　　　　　　
+　　M　　x　　　x
+　xx　　x　x　　
+　　　　　　　　　　
+　　　　　　x　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
+→ found a treaure: DokodemoDoor !!
+→ got state: Teleport
+M found a treaure: DokodemoDoor !!
+M got state: Teleport
+------------------------------------------
+　　　　　　　　　　
+x　x　　　　x→　
+x　　　　　　　　　
+　　M　　x　　　x
+　x　　　x　x　　
+　　　　　　　　　　
+　　　　　　x　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
+------------------------------------------
+Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]
+→'s Teleport state over
+→'s Teleport state over
+→ got state: Normal
+M's Teleport state over
+M's Teleport state over
+M got state: Normal
+------------------------------------------
+　　　　　　　　　　
+xMx　　　　x　　
+x　　　　　　　　　
+　　　　　x　　　x
+　x　　　x　x　　
+　　　　　　→　　　
+　　　　　　x　　　
+　　　x　　　　　x
+　　　x　x　　　　
+　　　　　　　　xx
 ------------------------------------------
 Please choose a valid action from : [MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, ATTACK]

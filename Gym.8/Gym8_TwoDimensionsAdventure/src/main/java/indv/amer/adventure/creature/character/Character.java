@@ -5,6 +5,10 @@ import indv.amer.adventure.CommandReader;
 import indv.amer.adventure.action.attack.CharacterAttack;
 import indv.amer.adventure.creature.ActionCommand;
 import indv.amer.adventure.creature.Creature;
+import indv.amer.adventure.state.InteruptableState;
+import indv.amer.adventure.state.OnHurtReactState;
+import indv.amer.adventure.state.instance.Invincible;
+import indv.amer.adventure.state.instance.Normal;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,5 +53,29 @@ public class Character extends Creature<Character> {
             this.setSymbol(this.direction.getDirectionSymbol());
         }
         return chosenAction;
+    }
+
+    @Override
+    public void getHurt(int damage) {
+        if (this.isAlive()) {
+            if (this.getState() instanceof OnHurtReactState) {
+                damage = ((OnHurtReactState) this.getState()).recalculateDamage(damage);
+            }
+            this.HP -= damage;
+            log.info("{} is hurt! damage = {}, HP left: {}", this.getSymbol(), damage, this.HP);
+            if (damage > 0) {
+                if (this.getState() instanceof InteruptableState) {
+                    log.info("{} is hurt, cancel {} state.", this.getSymbol(), this.getState().getClass().getSimpleName());
+                    this.changeState(new Normal(this));
+                } else {
+                    this.changeState(new Invincible(this));
+                }
+                if (this.HP < 0) {
+                    log.info("{} is dead!", this.getClass().getSimpleName());
+                }
+            }
+        } else {
+            log.info("We don't attack on dead body, are you hentai?");
+        }
     }
 }

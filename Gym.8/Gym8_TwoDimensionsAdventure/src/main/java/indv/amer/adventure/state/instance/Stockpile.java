@@ -2,22 +2,14 @@ package indv.amer.adventure.state.instance;
 
 import indv.amer.adventure.creature.Creature;
 import indv.amer.adventure.state.OnHurtReactState;
+import indv.amer.adventure.state.InteruptableState;
 import indv.amer.adventure.state.TimelyState;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Stockpile extends TimelyState implements OnHurtReactState {
+public class Stockpile extends TimelyState implements InteruptableState {
     public Stockpile(Creature creature) {
-        super(creature, 2);
-    }
-
-    @Override
-    public int recalculateDamage(int originDamage) {
-        if (originDamage > 0) {
-            log.info("{} is hurt, cancel accelerated state.",this.creature.getSymbol());
-            this.creature.changeState(new Normal(creature));
-        }
-        return originDamage;
+        super(creature, 3);
     }
 
     @Override

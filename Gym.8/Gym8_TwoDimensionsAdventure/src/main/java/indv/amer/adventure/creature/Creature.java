@@ -5,7 +5,9 @@ import indv.amer.adventure.map.MapObject;
 import indv.amer.adventure.action.attack.AttackAction;
 import indv.amer.adventure.action.move.MoveAction;
 import indv.amer.adventure.action.move.SingleStepMove;
+import indv.amer.adventure.state.InteruptableState;
 import indv.amer.adventure.state.OnHurtReactState;
+import indv.amer.adventure.state.instance.Invincible;
 import indv.amer.adventure.state.instance.Normal;
 import indv.amer.adventure.state.State;
 import lombok.Getter;
@@ -19,7 +21,7 @@ import java.util.List;
 @Setter
 public abstract class Creature<T extends Creature<T>> extends MapObject {
 
-    private int HP;
+    protected int HP;
     private AttackAction<T> DEFAULT_ATTACK;
     private AttackAction<T> attackAction;
     private MoveAction moveAction;
@@ -38,6 +40,7 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
         } else {
             moveAction.move(this, chosenCommand, this.getMap());
         }
+        this.getState().checkState();
     }
 
     protected abstract ActionCommand choseAction(List<ActionCommand> availableActionList);
@@ -56,6 +59,7 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
     public void changeState(State newState) {
         log.info("{} got state: {}", this.getSymbol(), newState.getClass().getSimpleName());
         this.state = newState;
+        this.state.enterState();
     }
 
     public void getHurt(int damage) {
@@ -64,16 +68,25 @@ public abstract class Creature<T extends Creature<T>> extends MapObject {
                 damage = ((OnHurtReactState) this.getState()).recalculateDamage(damage);
             }
             this.HP -= damage;
-            if (this.HP < 0) {
-                log.info("{} is dead!", this.getClass().getSimpleName());
+            log.info("{} is hurt! damage = {}, HP left: {}", this.getSymbol(), damage, this.HP);
+            if (damage > 0) {
+                if (this.getState() instanceof InteruptableState) {
+                    log.info("{} is hurt, cancel {} state.", this.getSymbol(), this.getState().getClass().getSimpleName());
+                    this.changeState(new Normal(this));
+                }
+                if (this.HP < 0) {
+                    log.info("{} is dead!", this.getClass().getSimpleName());
+                }
             }
         } else {
             log.info("We don't attack on dead body, are you hentai?");
         }
     }
 
+
     public void getHeal(int milk) {
         if (this.isAlive()) {
+            log.info("{} got healed. HP = {}", this.getSymbol(), this.HP);
             this.HP += milk;
         } else {
             log.info("We don't do anything on dead body, are you hentai?");
